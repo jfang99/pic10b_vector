@@ -1,5 +1,6 @@
 #include <iostream>   // std::ostream, std::cout
 
+
 namespace Pic10b{
     
     template<typename T>
@@ -23,11 +24,11 @@ namespace Pic10b{
         bool empty() const;
         size_t size() const;
         size_t capacity() const;
-        double front() const;
-        double back() const;
-        double at( size_t index ) const;
-        double& operator[]( size_t index );
-        double operator[]( size_t index ) const;
+        T front() const;
+        T back() const;
+        T at( size_t index ) const;
+        T& operator[]( size_t index );
+        T operator[]( size_t index ) const;
         void dump_data_to( std::ostream& out ) const;
         void dump_data() const;
         void push_back( double new_value );
@@ -101,29 +102,29 @@ namespace Pic10b{
     }
     
     template<typename T>
-    double vector<T>::front() const {
+    T vector<T>::front() const {
         return *the_data;
     }
     
     template<typename T>
-    double vector<T>::back() const {
+    T vector<T>::back() const {
         return *(the_data + the_size - 1);
     }
     
     template<typename T>
-    double vector<T>::at( size_t index ) const {
+   T vector<T>::at( size_t index ) const {
         if ( index < the_size )
             return the_data[index];
         return the_data[0];
     }
     
     template<typename T>
-    double& vector<T>::operator[]( size_t index ){
+    T& vector<T>::operator[]( size_t index ){
         return the_data[index];
     }
     
     template<typename T>
-    double vector<T>::operator[]( size_t index ) const {
+    T vector<T>::operator[]( size_t index ) const {
         return the_data[index];
     }
     
@@ -179,14 +180,15 @@ namespace Pic10b{
 
 
 /** ************************ OTHER FUNCTIONS ************************ **/
-std::ostream& operator<<( std::ostream& out, const Pic10b::vector& v ){
+template<typename T>
+std::ostream& operator<<( std::ostream& out, const Pic10b::vector<T>& v ){
     for ( size_t i = 0 ; i < v.size() ; ++i )
         out << v[i] << ' ';
     return out;
 }
 
-
-void print_vector( const Pic10b::vector& v ){
+template<typename T>
+void print_vector( const Pic10b::vector<T>& v ){
     if ( v.empty() )
         std::cout << "Vector is empty\n";
     else
