@@ -2,6 +2,7 @@
 
 namespace Pic10b{
     
+    template<typename T>
     class vector{
     private:
         double* the_data;
@@ -40,13 +41,15 @@ namespace Pic10b{
     
     
     /** ************************* THE BIG 4 ************************* **/
-    vector::vector()
+    template<typename T>
+    vector<T>::vector()
     : the_data(nullptr), the_size(0), the_capacity(INIT_CAP) {
         
         the_data = new double[the_capacity];
     }
     
-    vector::vector( const vector& source )
+    template<typename T>
+    vector<T>::vector( const vector& source )
     : the_data(nullptr), the_size(source.the_size),
     the_capacity(source.the_capacity) {
         
@@ -58,7 +61,8 @@ namespace Pic10b{
         }
     }
     
-    vector& vector::operator=( const vector& rhs ) {
+    template<typename T>
+    vector<T>& vector<T>::operator=( const vector& rhs ) {
         if ( this != &rhs ) {     // Self-assignment?
             // Release old memory and request more
             delete[] the_data;
@@ -75,7 +79,8 @@ namespace Pic10b{
         return *this;
     }
     
-    vector::~vector(){
+    template<typename T>
+    vector<T>::~vector(){
         delete[] the_data;
     }
     
