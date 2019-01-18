@@ -85,51 +85,63 @@ namespace Pic10b{
     }
     
     /** *********************** OTHER MEMBERS *********************** **/
-    bool vector::empty() const {
+    template<typename T>
+    bool vector<T>::empty() const {
         return the_size == 0;
     }
     
-    size_t vector::size() const {
+    template<typename T>
+    size_t vector<T>::size() const {
         return the_size;
     }
     
-    size_t vector::capacity() const {
+    template<typename T>
+    size_t vector<T>::capacity() const {
         return the_capacity;
     }
     
-    double vector::front() const {
+    template<typename T>
+    double vector<T>::front() const {
         return *the_data;
     }
     
-    double vector::back() const {
+    template<typename T>
+    double vector<T>::back() const {
         return *(the_data + the_size - 1);
     }
     
-    double vector::at( size_t index ) const {
+    template<typename T>
+    double vector<T>::at( size_t index ) const {
         if ( index < the_size )
             return the_data[index];
         return the_data[0];
     }
     
-    double& vector::operator[]( size_t index ){
-        return the_data[index];
-    }
-    double vector::operator[]( size_t index ) const {
+    template<typename T>
+    double& vector<T>::operator[]( size_t index ){
         return the_data[index];
     }
     
-    void vector::dump_data_to( std::ostream& out ) const {
+    template<typename T>
+    double vector<T>::operator[]( size_t index ) const {
+        return the_data[index];
+    }
+    
+    template<typename T>
+    void vector<T>::dump_data_to( std::ostream& out ) const {
         out << "Vector (dump): ";
         for ( size_t i = 0 ; i < the_capacity ; ++i )
             out << the_data[i] << ' ';
         out << '\n';
     }
-    void vector::dump_data() const {
+    
+    template<typename T>
+    void vector<T>::dump_data() const {
         dump_data_to( std::cout );
     }
     
-    
-    void vector::push_back( double new_value ){
+    template<typename T>
+    void vector<T>::push_back( double new_value ){
         if ( the_size == the_capacity )
             reserve( the_capacity + 1 );     // `the_data` is reassigned
         
@@ -137,13 +149,15 @@ namespace Pic10b{
     }
     
     // This implementation does not shrink the vector (ever)
-    void vector::pop_back(){
+    template<typename T>
+    void vector<T>::pop_back(){
         if ( the_size > 0 )
             --the_size;
     }
     
     
-    void vector::reserve( size_t new_capacity ){
+    template<typename T>
+    void vector<T>::reserve( size_t new_capacity ){
         if ( new_capacity > the_capacity ) {
             if ( new_capacity <= 2 * the_capacity )
                 new_capacity = 2 * the_capacity;
