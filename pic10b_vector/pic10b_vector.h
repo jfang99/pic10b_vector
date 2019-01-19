@@ -192,6 +192,16 @@ namespace Pic10b{
         return vec;
     }
     
+    //string type:
+    template<typename T>
+    vector<T> vector<T>::operator*(string str){
+        vector<T> copy(*this);
+        for(int i=0; i<the_size; ++i){
+            copy[i]=copy[i]+" "+str;
+        }
+        return copy;
+    }
+    
 } // end Pic10b namespace
 
 
