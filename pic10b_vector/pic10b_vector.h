@@ -34,6 +34,11 @@ namespace Pic10b{
         void push_back( double new_value );
         void pop_back();
         
+        
+        //other member functions:
+        //int types:
+        vector operator*(int a);
+        
     private:
         //Other members [private]
         void reserve( size_t new_capacity );
@@ -173,6 +178,18 @@ namespace Pic10b{
             
             delete old_location;
         }
+    }
+    
+    
+    
+    //integer types:
+    template<typename T>
+    vector<T> vector<T>::operator*(int a) {
+        vector vec(*this);
+        for (int i = 0; i < vec.size(); ++i) {
+            vec[i] = vec[i] * a;
+        }
+        return vec;
     }
     
 } // end Pic10b namespace
