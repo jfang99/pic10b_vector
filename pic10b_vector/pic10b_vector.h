@@ -1,7 +1,8 @@
 #include <iostream>   // std::ostream, std::cout
-
+#include<string>
 
 namespace Pic10b{
+    using std::string;
     
     template<typename T>
     class vector{
@@ -39,6 +40,8 @@ namespace Pic10b{
         //int types:
         vector operator*(int a);
         
+        //for string:
+        vector operator* (string str);
     private:
         //Other members [private]
         void reserve( size_t new_capacity );
