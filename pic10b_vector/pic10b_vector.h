@@ -6,7 +6,7 @@ namespace Pic10b{
     template<typename T>
     class vector{
     private:
-        double* the_data;
+        T* the_data;
         size_t the_size;
         size_t the_capacity;
         
@@ -46,7 +46,7 @@ namespace Pic10b{
     vector<T>::vector()
     : the_data(nullptr), the_size(0), the_capacity(INIT_CAP) {
         
-        the_data = new double[the_capacity];
+        the_data = new T[the_capacity];
     }
     
     template<typename T>
@@ -54,7 +54,7 @@ namespace Pic10b{
     : the_data(nullptr), the_size(source.the_size),
     the_capacity(source.the_capacity) {
         
-        the_data = new double[the_capacity];
+        the_data = new T[the_capacity];
         
         // Deep copy of internal array
         for ( int i = 0 ; i < the_size ; ++i ){
@@ -67,7 +67,7 @@ namespace Pic10b{
         if ( this != &rhs ) {     // Self-assignment?
             // Release old memory and request more
             delete[] the_data;
-            the_data = new double[rhs.the_capacity];
+            the_data = new T[rhs.the_capacity];
             
             // Shallow copy non-pointers
             the_size = rhs.the_size;
@@ -163,9 +163,9 @@ namespace Pic10b{
             if ( new_capacity <= 2 * the_capacity )
                 new_capacity = 2 * the_capacity;
             
-            double* old_location = the_data;
+            T* old_location = the_data;
             
-            the_data = new double[new_capacity];
+            the_data = new T[new_capacity];
             the_capacity = new_capacity;
             
             for ( size_t i = 0 ; i < the_size ; ++i )
