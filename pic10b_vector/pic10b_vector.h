@@ -60,7 +60,7 @@ namespace Pic10b{
         bool operator!=(const vector<T>& vec);
     private:
         //Other members [private]
-        //void reserve( size_t new_capacity );
+        void reserve( size_t new_capacity );
         
     }; // end Pic10b::vector
     
@@ -181,7 +181,7 @@ namespace Pic10b{
     }
     
     
-   /* template<typename T>
+   /template<typename T>
     void vector<T>::reserve( size_t new_capacity ){
         if ( new_capacity > the_capacity ) {
             if ( new_capacity <= 2 * the_capacity )
@@ -197,7 +197,7 @@ namespace Pic10b{
             
             delete old_location;
         }
-    }*/
+    }
     
     
     
@@ -381,3 +381,11 @@ vector<T> operator*(int a, const vector<T>& vec) {
 }
 
 
+template<typename T>
+vector<T> operator*(string str, const vector<T>& vec){
+    vector<T> copy(vec);
+    for(int i=0; i<vec.size(); ++i){
+        copy[i] = str + " " + copy[i];
+    }
+    return copy;
+}
