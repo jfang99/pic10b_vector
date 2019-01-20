@@ -56,7 +56,8 @@ namespace Pic10b{
         bool operator<=(const vector<T>& vec);
         bool operator>(const vector<T>& vec);
         bool operator>=(const vector<T>& vec);
-        
+        bool operator==(const vector<T>& vec);
+        bool operator!=(const vector<T>& vec);
     private:
         //Other members [private]
         void reserve( size_t new_capacity );
@@ -266,7 +267,7 @@ namespace Pic10b{
         for(int i=0; i<vec.size();i++){
             size=size+vec[i]*vec[i];
         }
-        T size_this;
+        T size_this=0.0;
         for(int i=0; i<(*this).size();i++){
             size_this=size_this+(*this)[i]*(*this)[i];
         }
@@ -280,12 +281,66 @@ namespace Pic10b{
         for(int i=0; i<vec.size();i++){
             size=size+vec[i]*vec[i];
         }
-        T size_this;
+        T size_this=0.0;
         for(int i=0; i<(*this).size();i++){
             size_this=size_this+(*this)[i]*(*this)[i];
         }
         if(size_this<=size)return true;
         else return false;
+    }
+    
+    template<typename T>
+    bool vector<T>::operator>(const vector<T>& vec){
+        T size = 0.0;
+        for(int i=0; i<vec.size();i++){
+            size=size+vec[i]*vec[i];
+        }
+        T size_this=0.0;
+        for(int i=0; i<(*this).size();i++){
+            size_this=size_this+(*this)[i]*(*this)[i];
+        }
+        if(size_this>size)return true;
+        else return false;
+    }
+    
+    template<typename T>
+    bool vector<T>::operator>=(const vector<T>& vec){
+        T size = 0.0;
+        for(int i=0; i<vec.size();i++){
+            size=size+vec[i]*vec[i];
+        }
+        T size_this=0.0;
+        for(int i=0; i<(*this).size();i++){
+            size_this=size_this+(*this)[i]*(*this)[i];
+        }
+        if(size_this>=size)return true;
+        else return false;
+    }
+    
+    template<typename T>
+    bool vector<T>::operator==(const vector<T>& vec) {
+        if (the_size != vec.size()) return false;
+        else {
+            for (int i = 0; i < vec.size();++i) {
+                if ((*this)[i] != vec[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+    
+    template<typename T>
+    bool vector<T>::operator!=(const vector<T>& vec) {
+        if (the_size != vec.size()) return true;
+        else {
+            for (int i = 0; i < vec.size(); ++i) {
+                if ((*this)[i] != vec[i]) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
     
     
