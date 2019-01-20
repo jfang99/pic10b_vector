@@ -34,7 +34,7 @@ namespace Pic10b{
         T operator[]( size_t index ) const;
         void dump_data_to(ostream& out ) const;
         void dump_data() const;
-        void push_back( double new_value );
+        void push_back( T new_value );
         void pop_back();
         
         
@@ -166,7 +166,7 @@ namespace Pic10b{
     }
     
     template<typename T>
-    void vector<T>::push_back( double new_value ){
+    void vector<T>::push_back( T new_value ){
         if ( the_size == the_capacity )
             reserve( the_capacity + 1 );     // `the_data` is reassigned
         
@@ -181,7 +181,7 @@ namespace Pic10b{
     }
     
     
-   /template<typename T>
+   template<typename T>
     void vector<T>::reserve( size_t new_capacity ){
         if ( new_capacity > the_capacity ) {
             if ( new_capacity <= 2 * the_capacity )
@@ -352,7 +352,7 @@ namespace Pic10b{
 /** ************************ OTHER FUNCTIONS ************************ **/
 
 using Pic10b::vector;
-
+using std::string;
 
 template<typename T>
 std::ostream& operator<<( std::ostream& out, const Pic10b::vector<T>& v ){
@@ -382,7 +382,7 @@ vector<T> operator*(int a, const vector<T>& vec) {
 
 
 template<typename T>
-vector<T> operator*(std:string str, const vector<T>& vec){
+vector<T> operator*( string str, const vector<T>& vec){
     vector<T> copy(vec);
     for(int i=0; i<vec.size(); ++i){
         copy[i] = str + " " + copy[i];
