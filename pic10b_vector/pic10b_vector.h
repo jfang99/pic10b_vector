@@ -3,6 +3,8 @@
 
 namespace Pic10b{
     using std::string;
+    using std::cout;
+    using std::ostream;
     
     template<typename T>
     class vector{
@@ -30,7 +32,7 @@ namespace Pic10b{
         T at( size_t index ) const;
         T& operator[]( size_t index );
         T operator[]( size_t index ) const;
-        void dump_data_to( std::ostream& out ) const;
+        void dump_data_to(ostream& out ) const;
         void dump_data() const;
         void push_back( double new_value );
         void pop_back();
@@ -42,6 +44,13 @@ namespace Pic10b{
         
         //for string:
         vector operator* (string str);
+        
+        //double types:
+        vector operator* (double a);
+        vector operator+(const vector<T>& vec);
+        vector& operator+=(const vector<T>& vec);
+        T operator*(const vector<T>& vec);
+        
     private:
         //Other members [private]
         void reserve( size_t new_capacity );
@@ -137,7 +146,7 @@ namespace Pic10b{
     }
     
     template<typename T>
-    void vector<T>::dump_data_to( std::ostream& out ) const {
+    void vector<T>::dump_data_to( ostream& out ) const {
         out << "Vector (dump): ";
         for ( size_t i = 0 ; i < the_capacity ; ++i )
             out << the_data[i] << ' ';
@@ -146,7 +155,7 @@ namespace Pic10b{
     
     template<typename T>
     void vector<T>::dump_data() const {
-        dump_data_to( std::cout );
+        dump_data_to( cout );
     }
     
     template<typename T>
@@ -205,7 +214,47 @@ namespace Pic10b{
         return copy;
     }
     
+    //double type:
+    template<typename T>
+    vector<T> vector<T>::operator*(double a){
+        vector<T> copy(*this);
+        for(int i=0; i<the_size; ++i){
+            copy[i]=copy[i]*a;
+        }
+        return copy;
+    }
+    
+    template<typename T>
+    vector<T> vector<T>::operator+(const vector<T>& vec){
+        vector<T> copy(*this);
+        for(int i=0; i<the_size;i++){
+            vec[i] = vec[i]+vec[i];
+            
+        }
+        return copy;
+    }
+    
+    template<typename T>
+    vector<T>& vector<T>::operator+=(const vector<T>& vec) {
+        for (int i = 0; i < vec.size(); ++i) {
+            (*this)[i] = (*this)[i] + vec[i];
+        }
+        return (*this);
+    }
+    
+    
+    template<typename T>
+    T vector<T>::operator*(const vector<T>& vec) {
+        T answer = 0;
+        for (int i = 0; i < vec.size(); ++i) {
+            answer = answer + ((*this)[i] * vec[i]);
+        }
+        return answer;
+    }
+    
+    
 } // end Pic10b namespace
+
 
 
 
