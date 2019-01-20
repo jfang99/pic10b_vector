@@ -382,7 +382,7 @@ vector<T> operator*(int a, const vector<T>& vec) {
 
 
 template<typename T>
-vector<T> operator*(std::string str, const vector<T>& vec){
+vector<T> operator*(std:string str, const vector<T>& vec){
     vector<T> copy(vec);
     for(int i=0; i<vec.size(); ++i){
         copy[i] = str + " " + copy[i];
