@@ -51,6 +51,12 @@ namespace Pic10b{
         vector& operator+=(const vector<T>& vec);
         T operator*(const vector<T>& vec);
         
+        //overload bool type operator for int
+        bool operator<(const vector<T>& vec);
+        bool operator<=(const vector<T>& vec);
+        bool operator>(const vector<T>& vec);
+        bool operator>=(const vector<T>& vec);
+        
     private:
         //Other members [private]
         void reserve( size_t new_capacity );
@@ -250,6 +256,36 @@ namespace Pic10b{
             answer = answer + ((*this)[i] * vec[i]);
         }
         return answer;
+    }
+    
+    
+    //bool types:
+    template<typename T>
+    bool vector<T>::operator<(const vector<T>& vec){
+        T size = 0.0;
+        for(int i=0; i<vec.size();i++){
+            size=size+vec[i]*vec[i];
+        }
+        T size_this;
+        for(int i=0; i<(*this).size();i++){
+            size_this=size_this+(*this)[i]*(*this)[i];
+        }
+        if(size_this<size)return true;
+        else return false;
+    }
+    
+    template<typename T>
+    bool vector<T>::operator<=(const vector<T>& vec){
+        T size = 0.0;
+        for(int i=0; i<vec.size();i++){
+            size=size+vec[i]*vec[i];
+        }
+        T size_this;
+        for(int i=0; i<(*this).size();i++){
+            size_this=size_this+(*this)[i]*(*this)[i];
+        }
+        if(size_this<=size)return true;
+        else return false;
     }
     
     
