@@ -352,7 +352,7 @@ namespace Pic10b{
 /** ************************ OTHER FUNCTIONS ************************ **/
 
 using Pic10b::vector;
-
+using std::string
 
 template<typename T>
 std::ostream& operator<<( std::ostream& out, const Pic10b::vector<T>& v ){
@@ -382,10 +382,12 @@ vector<T> operator*(int a, const vector<T>& vec) {
 
 
 template<typename T>
-vector<T> operator*(std::string str, const vector<T>& vec){
+vector<T> operator*( string str, const vector<T>& vec){
     vector<T> copy(vec);
     for(int i=0; i<vec.size(); ++i){
         copy[i] = str + " " + copy[i];
     }
     return copy;
 }
+
+
