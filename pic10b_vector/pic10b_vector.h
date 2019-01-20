@@ -5,6 +5,7 @@ namespace Pic10b{
     using std::string;
     using std::cout;
     using std::ostream;
+    using std::endl;
     
     template<typename T>
     class vector{
@@ -69,7 +70,7 @@ namespace Pic10b{
     template<typename T>
     vector<T>::vector()
     : the_data(nullptr), the_size(0), the_capacity(INIT_CAP) {
-        
+        cout<<"xxxxxxxxxDefault constructor called"<<endl;
         the_data = new T[the_capacity];
     }
     
@@ -77,7 +78,7 @@ namespace Pic10b{
     vector<T>::vector( const vector& source )
     : the_data(nullptr), the_size(source.the_size),
     the_capacity(source.the_capacity) {
-        
+        cout<<"xxxxxxxxxxCopy constructor called"<<endl;
         the_data = new T[the_capacity];
         
         // Deep copy of internal array
@@ -88,6 +89,7 @@ namespace Pic10b{
     
     template<typename T>
     vector<T>& vector<T>::operator=( const vector& rhs ) {
+        cout<<"xxxxxxxxxxxAssignment operator called"<<endl;
         if ( this != &rhs ) {     // Self-assignment?
             // Release old memory and request more
             delete[] the_data;
@@ -106,6 +108,7 @@ namespace Pic10b{
     
     template<typename T>
     vector<T>::~vector(){
+        cout<<"xxxxxxxxxdestructor called"<<endl;
         delete[] the_data;
     }
     
@@ -353,20 +356,22 @@ namespace Pic10b{
 
 using Pic10b::vector;
 using std::string;
+using std::ostream;
+using std::cout;
 
 template<typename T>
-std::ostream& operator<<( std::ostream& out, const Pic10b::vector<T>& v ){
+ostream& operator<<(ostream& out, const vector<T>& v ){
     for ( size_t i = 0 ; i < v.size() ; ++i )
         out << v[i] << ' ';
     return out;
 }
 
 template<typename T>
-void print_vector( const Pic10b::vector<T>& v ){
+void print_vector( const vector<T>& v ){
     if ( v.empty() )
-        std::cout << "Vector is empty\n";
+        cout << "Vector is empty\n";
     else
-        std::cout << "Vector (contents): " << v << '\n' ;
+        cout << "Vector (contents): " << v << '\n' ;
 }
 
 
