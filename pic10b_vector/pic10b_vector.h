@@ -181,7 +181,7 @@ namespace Pic10b{
     }
     
     
-   /template<typename T>
+   template<typename T>
     void vector<T>::reserve( size_t new_capacity ){
         if ( new_capacity > the_capacity ) {
             if ( new_capacity <= 2 * the_capacity )
@@ -352,7 +352,7 @@ namespace Pic10b{
 /** ************************ OTHER FUNCTIONS ************************ **/
 
 using Pic10b::vector;
-using std::string
+using std::string;
 
 template<typename T>
 std::ostream& operator<<( std::ostream& out, const Pic10b::vector<T>& v ){
