@@ -228,7 +228,7 @@ namespace Pic10b{
     vector<T> vector<T>::operator+(const vector<T>& vec){
         vector<T> copy(*this);
         for(int i=0; i<the_size;i++){
-            vec[i] = vec[i]+vec[i];
+            copy[i] = copy[i]+vec[i];
             
         }
         return copy;
@@ -259,6 +259,10 @@ namespace Pic10b{
 
 
 /** ************************ OTHER FUNCTIONS ************************ **/
+
+using Pic10b::vector;
+
+
 template<typename T>
 std::ostream& operator<<( std::ostream& out, const Pic10b::vector<T>& v ){
     for ( size_t i = 0 ; i < v.size() ; ++i )
@@ -275,5 +279,14 @@ void print_vector( const Pic10b::vector<T>& v ){
 }
 
 
+//my other non-member functions:
+template<typename T>
+vector<T> operator*(int a, const vector<T>& vec) {
+    vector<T> copy(vec);
+    for (int i = 0; i < vec.size(); ++i) {
+        copy[i] = copy[i] * a;
+    }
+    return copy;
+}
 
 
