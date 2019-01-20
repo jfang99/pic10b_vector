@@ -34,7 +34,7 @@ namespace Pic10b{
         T operator[]( size_t index ) const;
         void dump_data_to(ostream& out ) const;
         void dump_data() const;
-        void push_back( double new_value );
+        void push_back( T new_value );
         void pop_back();
         
         
@@ -166,7 +166,7 @@ namespace Pic10b{
     }
     
     template<typename T>
-    void vector<T>::push_back( double new_value ){
+    void vector<T>::push_back( T new_value ){
         if ( the_size == the_capacity )
             reserve( the_capacity + 1 );     // `the_data` is reassigned
         
