@@ -1,3 +1,6 @@
+Author: Jingfei Fang
+Date: 2019/01/23
+
 This is the implementation of my own class "vector" under the namespace "pic10b".
 The class "vector" is templated in order to cope with three types of variable types - int, double, and string.
 
